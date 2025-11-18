@@ -21,14 +21,23 @@
     <section class="flex flex-row">
         <aside id="for-bg" class="bg-[#D9C4B0] mt-4 ml-4 w-[30%] rounded-2xl">
             <div class="mb-10 text-center">utilisateur non assignés</div>
-            <div class="flex flex-col justify-center items-center ">
-                <div class="shadow w-[90%] bg-gray-500">
-                    <img src="" alt="photo profil">
-                    <p>nom complet</p>
-                    <p>role</p>
+            <div class="flex flex-col  md:gap-3 md:ml-4">
+                        <!-- carte d'affichage  -->
+                        <div class="flex justify-around items-center rounded-2xl bg-white gap-3 md:px-1 md:py-2">
+                            <div class="">
+                                <img class="rounded-2xl md:w-12 md:h-12" src="./imgs/profil.jpg" alt="staff photo">
+                            </div>
+                            <div class="flex flex-col ">
+                                <div class="md:text-[15px]">nom complet</div>
+                                <div class="md:text-[15px] text-gray-500 font-bold">poste</div>
+                            </div>
+                            <button>
+                                <i class="md:text-[18px] font-bold fa-solid fa-pen-to-square"></i>
+                            </button>
 
-                </div>
-            </div>
+                        </div>
+                        
+                    </div>
         </aside>
         <main class="w-full ">
             <div class="grid grid-cols-[35%_15%_25%_25%] grid-rows-[33%_33%_33%] h-[90vh] w-full">
@@ -120,7 +129,7 @@
                 </div>
 
                 <!-- couloir -->
-                <div class="bg-gray-500 col-span-2">6</div>
+                <div class="bg-gray-500 col-span-2"></div>
 
 
                 <!-- salle du personnel  -->
@@ -143,6 +152,7 @@
                     <div class="flex md:gap-3 md:ml-4">
                     </div>
                 </div>
+
 
             </div>
         </main>
