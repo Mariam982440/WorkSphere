@@ -52,8 +52,8 @@
         </aside>
         <!-- modal pour ajouter un nouveau employé  -->
         <section class="flex justify-center items-center fixed bg-gray-500 inset-0 bg-opacity-70">
-            <div class=" bg-white w-[50%] h-[95%]">
-                <div class="flex justify-between items-start md:mx-4 md:mt-2 ">
+            <div class=" bg-white md:w-[50%] md:h-[95%] ">
+                <div class="flex justify-between items-start md:mx-4 md:my-2 ">
                     <h2 class="text-xl font-bold">Nouveau employé</h2>
                     <button>
                         <i class="text-2xl font-bold text-red-500 fa-solid fa-x"></i>
@@ -61,6 +61,83 @@
                 </div>
                 <!-- Nom, Rôle, Photo (URL), Email, Téléphone
                 Expériences professionnelles (formulaire dynamique permettant d’ajouter plusieurs expériences). -->
+                <form class="flex flex-col justify-evenly gap-3 md:px-5">
+                    <div class="flex flex-col items-start justify-evenly">
+                        <label for="nom">Nom</label>
+                        <input class="text-center border-2 border-blue-100 rounded-xl  h-9 md:w-[590px] w-[100px] w-[20px]"
+                            type="text" name="nom" placeholder="nom de l'employé">
+                    </div>
+                    <div class="flex flex-col items-start justify-evenly">
+                        <label for="prénom">Prénom</label>
+                        <select class="text-center border-2 border-blue-100 rounded-xl h-9 md:w-[590px] w-[40px] "
+                            type="text" name="nom" placeholder="role de l'employé">
+                            <option value=""> Selectionnez un role</option>
+                            <option value="Technicien IT"> Technicien IT</option>
+                            <option value=" Réceptionniste"> Réceptionniste</option>
+                            <option value="manager"> Manager</option>
+                            <option value="agent de securité"> agent de securité</option>
+                            <option value="agent de nettoyage"> agent de nettoyage</option>
+
+                        </select>
+                    </div>
+                    <div class="flex flex-col items-start justify-evenly">
+                        <label for="prénom">Photo</label>
+                        <input class="text-center border-2 border-blue-100 rounded-xl  h-9 md:w-[590px] w-[40px]"
+                            type="image" name="nom" placeholder="photo de l'employé">
+                    </div>
+                    <div class="flex flex-col items-start justify-evenly">
+                        <label for="prénom">Téléphone</label>
+                        <input class="text-center border-2 border-blue-100 rounded-xl  h-9 md:w-[590px] w-[40px]"
+                            type="number" name="nom" placeholder="Téléphone">
+                    </div>
+                    <div class="flex flex-col items-start justify-evenly">
+                        <label for="émail">émail</label>
+                        <input class="text-center border-2 border-blue-100 rounded-xl  h-9 md:w-[590px] w-[40px]"
+                            type="email" name="émail" placeholder="exemple@gmail.com">
+                    </div>
+                    <div class="flex flex-col items-start justify-evenly">
+                        <label for="éxpérience">Expérience</label>
+                        <input class="text-center border-2 border-blue-100 rounded-xl  h-9 md:w-[590px] w-[40px]"
+                            type="éxpérience" name="éxpérience" placeholder="Expérience de l'employé">
+                    </div>
+                    <button
+                        class=" md:mx-52 md:px-3 md:py-2 flex justify-around items-center rounded-xl bg-gray-500 gap-1 w-[30%] ">
+                        <div class="md:text-[12px] font-bold text-white">Ajouter une expérience</div>
+                        <i class=" md:text-[16px] text-white font-bold fa-solid fa-plus"></i>
+                    </button>
+                    <div class="flex justify-around ">
+                        <button
+                            class="md:px-3 md:py-2  rounded-lg bg-red-500 w-[20%] ">
+                            <div class="md:text-[12px] font-bold text-white">Anuller</div>
+                        </button>
+                        <button
+                            class="md:px-3 md:py-2  rounded-lg bg-blue-500 w-[20%] ">
+                            <div class="md:text-[12px] font-bold text-white">Envoyer</div>
+                        </button>
+                    </div>
+
+
+                    <div class="flex justify-between">
+                        <button
+                            class=" md:mx-52 md:px-3 md:py-2  rounded-lg bg-red-500 w-[20%] ">
+                            <div class="md:text-[12px] font-bold text-white">Anuller</div>
+                        </button>
+                        <button
+                            class=" md:mx-52 md:px-3 md:py-2  rounded-lg bg-blue-500 w-[20%] ">
+                            <div class="md:text-[12px] font-bold text-white">Envoyer</div>
+                        </button>
+                    </div>
+                    <div class="flex justify-between">
+                        <button
+                            class=" md:mx-52 md:px-3 md:py-2  rounded-lg bg-red-500 w-[20%] ">
+                            <div class="md:text-[12px] font-bold text-white">Anuller</div>
+                        </button>
+                        <button
+                            class=" md:mx-52 md:px-3 md:py-2  rounded-lg bg-blue-500 w-[20%] ">
+                            <div class="md:text-[12px] font-bold text-white">Envoyer</div>
+                        </button>
+                    </div>
+                </form>
             </div>
 
 
