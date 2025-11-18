@@ -19,7 +19,7 @@
 
     </header> -->
     <section class="flex flex-row">
-        <aside id="for-bg" class="bg-[#ECEEDF]  w-[30%] h-[90Vh]">
+        <aside id="for-bg" class="bg-[#ECEEDF]  w-[25%] h-[90Vh]">
             <div class="md:mb-10 md:mt-4 font-bold text-xl text-gray-500 text-center">utilisateur non assignés</div>
             <div class="flex flex-col  md:gap-3 md:mx-2">
                 <!-- carte d'affichage  -->
@@ -37,22 +37,38 @@
                 </div>
             </div>
 
-            <div class=" md:mx-8 md:my-6 md:px-3 md:py-2 flex justify-around items-center rounded-xl bg-gray-500 gap-1 w-[80%] ">
+            <button
+                class=" md:mx-8 md:my-6 md:px-3 md:py-2 flex justify-around items-center rounded-xl bg-gray-500 gap-1 w-[80%] ">
                 <div class="md:text-[14px] font-bold text-white">Ajouter un employé</div>
-                <button>
-                    <i class=" md:text-[20px] font-bold fa-solid fa-plus"></i>
-                </button>
-            </div>
+
+                <i class=" md:text-[20px] text-white font-bold fa-solid fa-plus"></i>
+
+            </button>
 
 
 
 
 
         </aside>
+        <!-- modal pour ajouter un nouveau employé  -->
+        <section class="flex justify-center items-center fixed bg-gray-500 inset-0 bg-opacity-70">
+            <div class=" bg-white w-[50%] h-[95%]">
+                <div class="flex justify-between items-start md:mx-4 md:mt-2 ">
+                    <h2 class="text-xl font-bold">Nouveau employé</h2>
+                    <button>
+                        <i class="text-2xl font-bold text-red-500 fa-solid fa-x"></i>
+                    </button>
+                </div>
+                <!-- Nom, Rôle, Photo (URL), Email, Téléphone
+                Expériences professionnelles (formulaire dynamique permettant d’ajouter plusieurs expériences). -->
+            </div>
+
+
+        </section>
 
 
 
-        <main class="w-full ">
+        <main class="w-[74%] ">
             <div class="grid grid-cols-[35%_15%_25%_25%] grid-rows-[33%_33%_33%] h-[90vh] w-full md:mx-2 md:my-2 ">
 
 
