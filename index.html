@@ -140,12 +140,12 @@
         </section>
 
         <!-- modal pour selectionner l'employé à ajouter à une salle  -->
-        <section class="hidden flex justify-center items-center fixed  bg-gray-500 inset-0 bg-opacity-70">
+        <section id="staff-select" class="hidden flex justify-center items-center fixed  bg-gray-500 inset-0 bg-opacity-70">
 
             <div class="bg-gray-300 flex flex-col gap-3 md:w-[28vw] lg:w-[30vw] h-[40vh] overflow-auto pb-2">
                 <div class="flex justify-between items-start md:mx-4 lg:mt-2 lg:mb-7 ">
                     <h2 class="text-xl font-bold">Sélectionnez un employé</h2>
-                    <button>
+                    <button type="button" onclick="closeModalSelect()" >
                         <i class="text-2xl font-bold text-red-500 fa-solid fa-x"></i>
                     </button>
                 </div>
@@ -201,9 +201,6 @@
                             <i class="text-red-400 md:text-[12px] font-bold fa-solid fa-x"></i>
                         </button>
                     </div>
-
-
-
                 </div>
             </div>
 
@@ -217,7 +214,8 @@
                 <div class="bg-[#BBDCE5] ">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="text-l text-center font-bold mt-1">Salle de conférence</h3>
-                        <i class="fa-solid fa-plus"></i>
+                        <button type="button" onclick="openModalSelect()"><i class="fa-solid fa-plus"></i></button>
+                        
                     </div>
                     <div class="flex md:gap-3 md:ml-4">
 

@@ -54,7 +54,17 @@ bouton_exp.addEventListener(('click'),function(){
     count++;
 
 })
+// event pour ouvrir la modal de selection des employé
+function openModalSelect(){
+    document.getElementById('staff-select').classList.remove('hidden');
 
+}
+
+// event pour ouvrir la modal de selection des employé
+function closeModalSelect(){
+    document.getElementById('staff-select').classList.add('hidden');
+
+}
 // fonction pour ouvrir la modal de l'ajout 
 function openModalAjout(){
 
