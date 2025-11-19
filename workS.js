@@ -9,6 +9,22 @@ let employé =JSON.parse(localStorage.getItem('staffs')) || [];
 
 // document.querySelector('#form-ajout-edit').onsubmit = ajouterEmployé;
 
+let bouton_exp= document.getElementById('btn-ajout-exp');
+bouton_exp.addEventListener(('click'),function(){
+ let block= document.getElementById('inserer-exp');
+ let html=``;
+ html=`<div class="flex flex-col items-start justify-evenly">
+            <label for="éxpérience">Expérience</label>
+            <input id="experience"
+                class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[590px] md:w-[400px]"
+                type="éxpérience" name="éxpérience" placeholder="Expérience de l'employé">
+        </div>`
+
+ 
+block.innerHTML+=html;
+
+})
+
 // fonction pour ouvrir la modal de l'ajout 
 function openModalAjout(){
 
