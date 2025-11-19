@@ -19,8 +19,6 @@ bouton_exp.addEventListener(('click'),function(){
                 class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[590px] md:w-[400px]"
                 type="éxpérience" name="éxpérience" placeholder="Expérience de l'employé">
         </div>`
-
- 
 block.innerHTML+=html;
 
 })
