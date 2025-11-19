@@ -21,20 +21,9 @@
     <section class="flex flex-row">
         <aside id="for-bg" class="bg-[#ECEEDF]  w-[25%] h-[97Vh]">
             <div class="md:mb-10 md:mt-4 font-bold text-xl text-gray-500 text-center">utilisateur non assignés</div>
-            <div class="flex flex-col  md:gap-3 md:mx-2">
+            <div id="cartes" class="flex flex-col  md:gap-3 md:mx-2">
                 <!-- carte d'affichage  -->
-                <div class="flex justify-around items-center rounded-2xl bg-white gap-3 md:px-1 md:py-2">
-                    <div class="">
-                        <img class="rounded-2xl md:w-12 md:h-12" src="./imgs/profil.jpg" alt="staff photo">
-                    </div>
-                    <div class="flex flex-col ">
-                        <div class="md:text-[15px]">nom complet</div>
-                        <div class="md:text-[15px] text-gray-500 font-bold">poste</div>
-                    </div>
-                    <button>
-                        <i class="md:text-[18px] font-bold fa-solid fa-pen-to-square"></i>
-                    </button>
-                </div>
+                
             </div>
 
             <button id="open-ajout" onclick="openModalAjout()" 
@@ -80,7 +69,7 @@
                     <div class="flex flex-col items-start justify-evenly">
                         <label for="photo">Photo</label>
                         <input id="photo" class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[590px] md:w-[400px]"
-                            type="image" name="photo" placeholder="photo de l'employé">
+                            type="file" name="photo" placeholder="photo de l'employé">
                     </div>
                     <div class="flex flex-col items-start justify-evenly">
                         <label for="prénom">Téléphone</label>
@@ -106,8 +95,9 @@
                         <button class="md:px-3 md:py-2  rounded-lg bg-red-500 w-[20%] ">
                             <div onclick="closeModalAjout()" class="md:text-[12px] font-bold text-white">Anuller</div>
                         </button>
-                        <button class="md:px-3 md:py-2  rounded-lg bg-blue-500 w-[20%] ">
-                            <div class="md:text-[12px] font-bold text-white">Envoyer</div>
+                        <button  class="md:px-3 md:py-2  rounded-lg bg-blue-500 w-[20%] "
+                         type="submit" onclick="ajouterEmployé(event)">
+                            <div class="md:text-[12px] font-bold text-white" >Envoyer</div>
                         </button>
                     </div>
                 </form>

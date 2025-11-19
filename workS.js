@@ -1,4 +1,13 @@
-let employé= [];
+let employé =JSON.parse(localStorage.getItem('staffs')) || [];
+
+// window.onload= function(){
+//     afficherStaff();
+
+// document.querySelector('#form-ajout-edit').onsubmit = ajouterEmployé;
+// }
+ afficherStaff();
+
+// document.querySelector('#form-ajout-edit').onsubmit = ajouterEmployé;
 
 // fonction pour ouvrir la modal de l'ajout 
 function openModalAjout(){
@@ -6,6 +15,7 @@ function openModalAjout(){
     document.getElementById('nom').value='';
     document.getElementById('role').value='';
     document.getElementById('photo').value='';
+    document.getElementById('tel').value='';
     document.getElementById('email').value='';
     document.getElementById('experience').value='';
 
@@ -18,25 +28,38 @@ function closeModalAjout(){
 }
 
 function afficherStaff(){
+    let html = '';
+    if (employé.length === 0 ) {
+        document.getElementById('cartes').innerHTML = `
+        <div class="text-center m-20 p-20 w-full">
+            <p class="text-[150%] text-gray-400 dark:text-gray-500">Aucune transaction pour le moment</p>
+            <p class="text-gray-500 dark:text-gray-600 mt-4">Cliquez sur "Ajouter une transaction" pour commencer</p>
+        </div>`;
+        return;
+    }
     for(let i=0;i<employé.length;i++){
         let emp= employé[i];
-        html=`
+        html +=`
         <div class="flex justify-around items-center rounded-2xl bg-white gap-3 md:px-1 md:py-2">
                     <div class="">
                         <img class="rounded-2xl md:w-12 md:h-12" src="./imgs/profil.jpg" alt="staff photo">
                     </div>
                     <div class="flex flex-col ">
-                        <div class="md:text-[15px]">${emp.nom}</div>
+                        <div class="md:text-[15px]">${emp.name}</div>
                         <div class="md:text-[15px] text-gray-500 font-bold">${emp.role}</div>
                     </div>
                     <button>
                         <i class="md:text-[18px] font-bold fa-solid fa-pen-to-square"></i>
                     </button>
+                    <button>
+                        <i class="md:text-[18px] font-bold fa-solid fa-trash"></i>
+                    </button>
                 </div>`
     }
+    document.getElementById('cartes').innerHTML=html;
 }
-function ajouterEmployé(){
-    preventDefault();
+function ajouterEmployé(e){
+    e.preventDefault();
     
     const nom = document.getElementById('nom').value;
     const role = document.getElementById('role').value;
@@ -58,7 +81,10 @@ function ajouterEmployé(){
         statu:'unassigned'
     }
     employé.push(staff);
+    localStorage.setItem('staffs',JSON.stringify(employé))
 
     afficherStaff();
+    closeModalAjout();
+    
 document.getElementById('form-ajout-edit').reset();
 }
