@@ -29,16 +29,17 @@ function closeModalAjout(){
 
 function afficherStaff(){
     let html = '';
+    
     if (employé.length === 0 ) {
         document.getElementById('cartes').innerHTML = `
-        <div class="text-center m-20 p-20 w-full">
-            <p class="text-[150%] text-gray-400 dark:text-gray-500">Aucune transaction pour le moment</p>
-            <p class="text-gray-500 dark:text-gray-600 mt-4">Cliquez sur "Ajouter une transaction" pour commencer</p>
+        <div class="text-center m-3 p-20 w-full">
+            <p class="text-[80%] text-gray-400">Aucun employé pour le moment</p>
         </div>`;
         return;
     }
     for(let i=0;i<employé.length;i++){
         let emp= employé[i];
+        if(emp.deleted===true) continue;
         html +=`
         <div class="flex justify-around items-center rounded-2xl bg-white gap-3 md:px-1 md:py-2">
                     <div class="">
@@ -51,13 +52,24 @@ function afficherStaff(){
                     <button>
                         <i class="md:text-[18px] font-bold fa-solid fa-pen-to-square"></i>
                     </button>
-                    <button>
+                    <button type="button" onclick="supprimerEmployé(${i})">
                         <i class="md:text-[18px] font-bold fa-solid fa-trash"></i>
                     </button>
                 </div>`
     }
     document.getElementById('cartes').innerHTML=html;
 }
+function supprimerEmployé(indice){
+    const confirmer= confirm("Êtes-vous sûr de vouloir supprimer cet employé ?")
+    if(!confirmer) {
+        return;
+    }
+
+    employé[indice].deleted= true;
+    afficherStaff();
+    localStorage.setItem(('staffs'),JSON.stringify(employé));
+}
+
 function ajouterEmployé(e){
     e.preventDefault();
     
@@ -78,7 +90,8 @@ function ajouterEmployé(e){
         tel: tel,
         email: email,
         experience: experience,
-        statu:'unassigned'
+        statu:'unassigned',
+        deleted: false
     }
     employé.push(staff);
     localStorage.setItem('staffs',JSON.stringify(employé))
