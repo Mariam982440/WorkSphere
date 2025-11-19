@@ -8,18 +8,50 @@ let employé =JSON.parse(localStorage.getItem('staffs')) || [];
  afficherStaff();
 
 // document.querySelector('#form-ajout-edit').onsubmit = ajouterEmployé;
-
+let count=1;
 let bouton_exp= document.getElementById('btn-ajout-exp');
+
 bouton_exp.addEventListener(('click'),function(){
- let block= document.getElementById('inserer-exp');
- let html=``;
- html=`<div class="flex flex-col items-start justify-evenly">
-            <label for="éxpérience">Expérience</label>
-            <input id="experience"
-                class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[590px] md:w-[400px]"
-                type="éxpérience" name="éxpérience" placeholder="Expérience de l'employé">
+    
+    let block= document.getElementById('inserer-exp');
+    let html=``;
+
+    html=`<div class="block-exp">
+            <h1 class="lg:mb-4 ">Expérience ${count}</h1>
+            <div class="flex gap-6 ">
+                <div class="flex flex-col items-start justify-evenly">
+                    <label class="text-xs" for="Poste">Poste</label>
+                    <input 
+                    class="poste text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
+                    type="text" name="Poste" placeholder="Expérience de l'employé">
+
+                </div>
+                <div class="flex flex-col items-start justify-evenly">
+                    <label class="text-xs"  for="entreprise">Entreprise</label>
+                    <input 
+                    class="entreprise text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
+                    type="text" name="entreprise" placeholder="Entreprise de cet expérience">
+                </div> 
+            </div>
+            <div class="flex gap-6">
+                <div class="flex flex-col items-start justify-evenly">
+                    <label class="text-xs"  for="date_debut">Date de debut</label>
+                    <input 
+                    class="date_debut text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
+                    type="date" name="date_debut" placeholder="Date de debut">
+
+                </div>
+                <div class="flex flex-col items-start justify-evenly">
+                    <label class="text-xs"  for="date_fin">Date de la fin</label>
+                    <input 
+                    class="date_fin text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
+                    type="date" name="date_fin" placeholder="Date de la fin">
+                </div> 
+            </div>
         </div>`
-block.innerHTML+=html;
+
+    block.innerHTML+=html;
+    count++;
 
 })
 
@@ -31,7 +63,6 @@ function openModalAjout(){
     document.getElementById('photo').value='';
     document.getElementById('tel').value='';
     document.getElementById('email').value='';
-    document.getElementById('experience').value='';
 
     document.getElementById('titre-modal').textContent='Nouveau employé'
 
@@ -86,15 +117,33 @@ function supprimerEmployé(indice){
 
 function ajouterEmployé(e){
     e.preventDefault();
+
+    const blocs=document.querySelectorAll('.block-exp');
+
+    const experiences=[];
+    blocs.forEach(bloc => {
+        let exp={
+            poste: bloc.querySelector('.poste').value,
+            entreprise: bloc.querySelector('.entreprise').value,
+            date_debut: bloc.querySelector('.date_debut').value,
+            date_fin: bloc.querySelector('.date_fin').value,
+        }
+        experiences.push(exp);
+    });
     
     const nom = document.getElementById('nom').value;
     const role = document.getElementById('role').value;
     const photo = document.getElementById('photo').value;
     const tel = document.getElementById('tel').value;
     const email = document.getElementById('email').value;
-    const experience = document.getElementById('experience').value;
+    const experience=experiences;
 
-    if(!nom || !role  ||!email||!experience){
+    
+
+    
+
+
+    if(!nom || !role  ||!email){
         alert('veuillez remplir les champs vide');
     }
     const staff={

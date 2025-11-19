@@ -87,14 +87,39 @@
                             class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[590px] md:w-[400px]"
                             type="email" name="émail" placeholder="exemple@gmail.com">
                     </div>
-                    <div id="inserer-exp">
-                        <div class="flex flex-col items-start justify-evenly">
-                            <label for="éxpérience">Expérience</label>
-                            <input id="experience"
-                                class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[590px] md:w-[400px]"
-                                type="text" name="éxpérience" placeholder="Expérience de l'employé">
+                    <div id="inserer-exp" class="flex flex-col border-2 border-blue-100 rounded-xl px-4 py-5 lg:w-[590px] md:w-[400px] bg-gray-200">
+                        <!-- les expérience seront inérées ici -->
+                        <h1 class="lg:mb-4">Expérience</h1>
+                        <div class="flex gap-6 ">
+                            <div class="flex flex-col items-start justify-evenly">
+                                <label class="text-xs" for="Poste">Poste</label>
+                                <input id="Poste"
+                                    class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
+                                    type="text" name="Poste" placeholder="Expérience de l'employé">
+
+                            </div>
+                            <div class="flex flex-col items-start justify-evenly">
+                                <label class="text-xs"  for="entreprise">Entreprise</label>
+                                <input id="entreprise"
+                                    class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
+                                    type="text" name="entreprise" placeholder="Entreprise de cet expérience">
+                            </div> 
                         </div>
-                        
+                        <div class="flex gap-6">
+                            <div class="flex flex-col items-start justify-evenly">
+                                <label class="text-xs"  for="date_debut">Date de debut</label>
+                                <input id="date_debut"
+                                    class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
+                                    type="text" name="date_debut" placeholder="Date de debut">
+
+                            </div>
+                            <div class="flex flex-col items-start justify-evenly">
+                                <label class="text-xs"  for="date_fin">Date de la fin</label>
+                                <input id="date_fin"
+                                    class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
+                                    type="text" name="date_fin" placeholder="Date de la fin">
+                            </div> 
+                        </div>
                     </div>
                     <button id="btn-ajout-exp" type="button"
                         class=" md:mx-52 md:px-3 md:py-2 flex justify-around items-center rounded-xl bg-gray-500 gap-1 w-[30%] ">
