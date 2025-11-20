@@ -56,13 +56,13 @@ bouton_exp.addEventListener(('click'),function(){
 })
 // event pour ouvrir la modal de selection des employé
 function openModalSelect(){
-    document.getElementById('staff-select').classList.remove('hidden');
+    document.getElementById('liste-staff-select').classList.remove('hidden');
 
 }
 
 // event pour ouvrir la modal de selection des employé
 function closeModalSelect(){
-    document.getElementById('staff-select').classList.add('hidden');
+    document.getElementById('liste-staff-select').classList.add('hidden');
 
 }
 
@@ -196,6 +196,19 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
 
 function afficherListeModal(allowedEmp){
 
+    let container = document.getElementById('liste-staff-select');
+    allowedEmp.forEach(emp=>{
+
+        container.innerHTML+=`<div class="flex justify-around items-center rounded-2xl bg-white md:px-1 md:py-1">
+                <div>
+                    <img class="rounded-2xl md:w-8 md:h-8" src="./imgs/profil.jpg" alt="staff photo">
+                </div>
+                <div class="flex flex-col">
+                    <div class="text-[12px]">${emp.name}</div>
+                    <div class="text-[12px] text-gray-500 font-bold">${emp.role}</div>
+                </div>
+            </div>`
+    })
 } 
 
 
@@ -210,7 +223,7 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
         if(salleCliquee=='securité'){
 
             const rolesAutorises = ['Technicien IT', 'manager'];
-            employé.forEach((emp, index) => {
+            employé.forEach(emp => {
 
             if (emp.deleted) return;
             // si le rôle n'est pas dans la liste autorisée  on skip
@@ -223,7 +236,6 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
         } 
         openModalSelect();
         afficherListeModal(allowedEmp);
-    })
-    ;
+    });
 });
     
