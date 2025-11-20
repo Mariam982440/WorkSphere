@@ -65,6 +65,8 @@ function closeModalSelect(){
     document.getElementById('staff-select').classList.add('hidden');
 
 }
+
+document.getElementById('')
 // fonction pour ouvrir la modal de l'ajout 
 function openModalAjout(){
 
@@ -174,3 +176,54 @@ function ajouterEmployé(e){
     
 document.getElementById('form-ajout-edit').reset();
 }
+
+
+// fonction pour selectionner et filtrer les employé à assignés
+
+document.querySelectorAll('.btn-assign').forEach(btn => {
+
+    btn.addEventListener('click',function(){
+
+        let salleCliquee = btn.getAttribute('data-salle');  
+        console.log("Salle cliquée :", salleCliquee);
+        
+
+        
+    });
+    
+});
+
+
+function afficherListeModal(allowedEmp){
+
+} 
+
+
+document.querySelectorAll('.btn-assign').forEach(btn => {
+
+    btn.addEventListener('click', function() {
+
+        let salleCliquee = btn.getAttribute('data-salle');  
+        console.log("Salle cliquée :", salleCliquee);
+        let allowedEmp=[];
+
+        if(salleCliquee=='securité'){
+
+            const rolesAutorises = ['Technicien IT', 'manager'];
+            employé.forEach((emp, index) => {
+
+            if (emp.deleted) return;
+            // si le rôle n'est pas dans la liste autorisée  on skip
+            if (!rolesAutorises.includes(emp.role)) return;
+            else{
+                allowedEmp.push(emp);
+            } 
+            });
+            
+        } 
+        openModalSelect();
+        afficherListeModal(allowedEmp);
+    })
+    ;
+});
+    
