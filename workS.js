@@ -196,10 +196,11 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
 
 function afficherListeModal(allowedEmp){
 
-    let container = document.getElementById('liste-staff-select');
+    let container = document.getElementById('container-select');
+    container.innerHTML="";
     allowedEmp.forEach(emp=>{
 
-        container.innerHTML+=`<div class="flex justify-around items-center rounded-2xl bg-white md:px-1 md:py-1">
+        container.innerHTML+=`<button ><div class="flex justify-around items-center rounded-2xl bg-white md:px-1 md:py-1">
                 <div>
                     <img class="rounded-2xl md:w-8 md:h-8" src="./imgs/profil.jpg" alt="staff photo">
                 </div>
@@ -207,7 +208,7 @@ function afficherListeModal(allowedEmp){
                     <div class="text-[12px]">${emp.name}</div>
                     <div class="text-[12px] text-gray-500 font-bold">${emp.role}</div>
                 </div>
-            </div>`
+            </div></button>`
     })
 } 
 
@@ -217,12 +218,55 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
     btn.addEventListener('click', function() {
 
         let salleCliquee = btn.getAttribute('data-salle');  
-        console.log("Salle cliquée :", salleCliquee);
         let allowedEmp=[];
 
-        if(salleCliquee=='securité'){
+        if(salleCliquee=='serveurs'){
 
-            const rolesAutorises = ['Technicien IT', 'manager'];
+            let rolesAutorises = ['Technicien IT', 'manager','agent de nettoyage'];
+            employé.forEach(emp => {
+
+            if (emp.deleted) return;
+            // si le rôle n'est pas dans la liste autorisée  on skip
+            if (!rolesAutorises.includes(emp.role)) return;
+            else{
+                allowedEmp.push(emp);
+            } 
+            });
+            
+        }
+
+        if(salleCliquee=='conference'){
+
+            let rolesAutorises = ['Technicien IT', 'manager','autre','réceptionniste','agent de securité','agent de nettoyage'];
+            employé.forEach(emp => {
+
+            if (emp.deleted) return;
+            // si le rôle n'est pas dans la liste autorisée  on skip
+            if (!rolesAutorises.includes(emp.role)) return;
+            else{
+                allowedEmp.push(emp);
+            } 
+            });
+            
+        }
+        
+        if(salleCliquee=='securite'){
+
+            const rolesAutorises = ['agent de securité', 'manager','agent de nettoyage'];
+            employé.forEach(emp => {
+
+            if (emp.deleted) return;
+            // si le rôle n'est pas dans la liste autorisée  on skip
+            if (!rolesAutorises.includes(emp.role)) return;
+            else{
+                allowedEmp.push(emp);
+            } 
+            });
+        }
+
+        if(salleCliquee=='reception'){
+
+            const rolesAutorises = ['réceptionniste', 'manager','agent de nettoyage'];
             employé.forEach(emp => {
 
             if (emp.deleted) return;
@@ -234,8 +278,38 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
             });
             
         } 
-        openModalSelect();
+        if(salleCliquee=='personnel'){
+
+            const rolesAutorises = ['Technicien IT', 'manager','autre','réceptionniste','agent de securité','agent de nettoyage'];
+            employé.forEach(emp => {
+
+            if (emp.deleted) return;
+            // si le rôle n'est pas dans la liste autorisée  on skip
+            if (!rolesAutorises.includes(emp.role)) return;
+            else{
+                allowedEmp.push(emp);
+            } 
+            });
+            
+        } 
+        if(salleCliquee=='archive'){
+
+            const rolesAutorises = ['manager'];
+            employé.forEach(emp => {
+
+            if (emp.deleted) return;
+            // si le rôle n'est pas dans la liste autorisée  on skip
+            if (!rolesAutorises.includes(emp.role)) return;
+            else{
+                allowedEmp.push(emp);
+            } 
+            });
+            
+        }
+        console.log(allowedEmp);
         afficherListeModal(allowedEmp);
+        openModalSelect();
+        
     });
 });
     

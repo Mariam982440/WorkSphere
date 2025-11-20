@@ -62,10 +62,11 @@
                             type="text" name="role" placeholder="role de l'employé">
                             <option value=""> Selectionnez un role</option>
                             <option value="Technicien IT"> Technicien IT</option>
-                            <option value=" Réceptionniste"> Réceptionniste</option>
+                            <option value="réceptionniste"> Réceptionniste</option>
                             <option value="manager"> Manager</option>
                             <option value="agent de securité"> agent de securité</option>
                             <option value="agent de nettoyage"> agent de nettoyage</option>
+                            <option value="autre">Autre</option>
 
                         </select>
                     </div>
@@ -151,8 +152,9 @@
                         <i class="ntn-assign text-2xl font-bold text-red-500 fa-solid fa-x"></i>
                     </button>
                 </div>
-                <div class="flex flex-col mx-auto gap-3 w-[20vw]">
+                <div id="container-select" class="flex flex-col mx-auto gap-3 w-[20vw]">
                     <!-- les cartes à selectionner -->
+                    
                     <div class="flex justify-around items-center  rounded-2xl bg-white  md:px-1 md:py-1">
                         <div class="">
                             <img class="rounded-2xl md:w-8 md:h-8" src="./imgs/profil.jpg" alt="staff photo">
@@ -165,44 +167,7 @@
                             <i class="text-red-400 md:text-[12px] font-bold fa-solid fa-x"></i>
                         </button>
                     </div>
-
-
-                    <div class="flex justify-around items-center  rounded-2xl bg-white  md:px-1 md:py-1">
-                        <div class="">
-                            <img class="rounded-2xl md:w-8 md:h-8" src="./imgs/profil.jpg" alt="staff photo">
-                        </div>
-                        <div class="flex flex-col">
-                            <div class="text-[12px]">nom complet</div>
-                            <div class="text-[12px] text-gray-500 font-bold">poste</div>
-                        </div>
-                        <button>
-                            <i class="text-red-400 md:text-[12px] font-bold fa-solid fa-x"></i>
-                        </button>
-                    </div>
-                    <div class="flex justify-around items-center  rounded-2xl bg-white  md:px-1 md:py-1">
-                        <div class="">
-                            <img class="rounded-2xl md:w-8 md:h-8" src="./imgs/profil.jpg" alt="staff photo">
-                        </div>
-                        <div class="flex flex-col">
-                            <div class="text-[12px]">nom complet</div>
-                            <div class="text-[12px] text-gray-500 font-bold">poste</div>
-                        </div>
-                        <button>
-                            <i class="text-red-400 md:text-[12px] font-bold fa-solid fa-x"></i>
-                        </button>
-                    </div>
-                    <div class="flex justify-around items-center  rounded-2xl bg-white  md:px-1 md:py-1">
-                        <div class="">
-                            <img class="rounded-2xl md:w-8 md:h-8" src="./imgs/profil.jpg" alt="staff photo">
-                        </div>
-                        <div class="flex flex-col">
-                            <div class="text-[12px]">nom complet</div>
-                            <div class="text-[12px] text-gray-500 font-bold">poste</div>
-                        </div>
-                        <button>
-                            <i class="text-red-400 md:text-[12px] font-bold fa-solid fa-x"></i>
-                        </button>
-                    </div>
+                    
                 </div>
             </div>
 
@@ -216,7 +181,7 @@
                 <div class="bg-[#BBDCE5] ">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="text-l text-center font-bold mt-1">Salle de conférence</h3>
-                        <button class="btn-assign" type="button"  data-salle="conférence"><i
+                        <button class="btn-assign" type="button"  data-salle="conference"><i
                                 class=" fa-solid fa-plus"></i>
                         </button>
 
@@ -277,7 +242,7 @@
                 <div class="bg-[#CFAB8D] ">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="text-l text-center font-bold mt-1">Salle de securité</h3>
-                        <button class="btn-assign" type="button" data-salle="sécurité">
+                        <button class="btn-assign" type="button" data-salle="securite">
                             <i class=" fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -290,7 +255,7 @@
                 <div class="bg-[#CFAB8D] row-span-2">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="text-l text-center font-bold mt-1">Salle de réception</h3>
-                        <button class="btn-assign" type="button" data-salle="réception">
+                        <button class="btn-assign" type="button" data-salle="reception">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -319,10 +284,9 @@
                 <div class="bg-[#A4CCD9]">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="text-l text-center font-bold mt-1">Salle d’archives</h3>
-                        <button class="btn-assign" type="button" onclick="openModalSelect()" data-salle="archive">
+                        <button class="btn-assign" type="button" data-salle="archive">
                             <i class="fa-solid fa-plus"></i>
                         </button>
-                        <i class="fa-solid fa-plus"></i>
                     </div>
                     <div class="flex md:gap-3 md:ml-4">
                     </div>
