@@ -97,6 +97,7 @@ function afficherStaff(){
     for(let i=0;i<employé.length;i++){
         let emp= employé[i];
         if(emp.deleted===true) continue;
+        if(emp.statu==='assigned') continue;
         html +=`
         <div class="flex justify-around items-center rounded-2xl bg-white gap-3 md:px-1 md:py-2">
                     <div class="">
@@ -178,29 +179,16 @@ document.getElementById('form-ajout-edit').reset();
 }
 
 
-// fonction pour selectionner et filtrer les employé à assignés
-
-document.querySelectorAll('.btn-assign').forEach(btn => {
-
-    btn.addEventListener('click',function(){
-
-        let salleCliquee = btn.getAttribute('data-salle');  
-        console.log("Salle cliquée :", salleCliquee);
-        
-
-        
-    });
-    
-});
 
 
 function afficherListeModal(allowedEmp){
 
     let container = document.getElementById('container-select');
     container.innerHTML="";
-    allowedEmp.forEach(emp=>{
+    allowedEmp.forEach((emp,index)=>{
 
-        container.innerHTML+=`<button ><div class="flex justify-around items-center rounded-2xl bg-white md:px-1 md:py-1">
+        container.innerHTML+=`<button type="button" class="btn-select-emp" data-index="${index}">
+                <div class="flex justify-around items-center rounded-2xl bg-white md:px-1 md:py-1">
                 <div>
                     <img class="rounded-2xl md:w-8 md:h-8" src="./imgs/profil.jpg" alt="staff photo">
                 </div>
@@ -208,10 +196,52 @@ function afficherListeModal(allowedEmp){
                     <div class="text-[12px]">${emp.name}</div>
                     <div class="text-[12px] text-gray-500 font-bold">${emp.role}</div>
                 </div>
-            </div></button>`
+                </div>
+            </button>`
     })
 } 
+// fonction pour permetre la selection par click dans la liste des autorisés
+function activerselection(salleCliquee,allowedEmp){
 
+    document.querySelectorAll('.btn-select-emp').forEach(element=>{
+
+        element.addEventListener('click',function(){
+
+            let indice= this.getAttribute('data-index');
+            let employéSelected=allowedEmp[indice];
+
+
+
+            ajouterEmployeSalle(employéSelected, salleCliquee);
+            closeModalSelect();
+            console.log(employéSelected);
+        })
+    })
+}
+// fonction pour afficher l'employé selectionner dans la salle cliqué
+
+function ajouterEmployeSalle(employe, salle) {
+
+    let bouton = document.querySelector(`[data-salle="${salle}"]`);
+    let containerSalle = bouton.closest('.bg-\\[\\#CFAB8D\\]').querySelector('.liste-employes');
+
+    containerSalle.innerHTML += `
+        <div class="flex items-center gap-1 p-[3px] bg-white rounded-xl ">
+            <img src="./imgs/profil.jpg" class="w-5 h-5 rounded-xl">
+            <span class="text-[9px]">${employe.name}</span>
+            <i class="text-[6px] fa-solid fa-x"></i>
+        </div>
+    `;
+    
+    employe.statu = 'assigned';
+    employe.poste = salle;
+    localStorage.setItem('staffs',JSON.stringify(employé));
+    afficherStaff();
+}
+
+
+
+// fonction pour selectionner et filtrer les employé à assignés
 
 document.querySelectorAll('.btn-assign').forEach(btn => {
 
@@ -226,6 +256,7 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
             employé.forEach(emp => {
 
             if (emp.deleted) return;
+            if (emp.statu === 'assigned') return;
             // si le rôle n'est pas dans la liste autorisée  on skip
             if (!rolesAutorises.includes(emp.role)) return;
             else{
@@ -241,6 +272,7 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
             employé.forEach(emp => {
 
             if (emp.deleted) return;
+            if (emp.statu === 'assigned') return;
             // si le rôle n'est pas dans la liste autorisée  on skip
             if (!rolesAutorises.includes(emp.role)) return;
             else{
@@ -256,6 +288,7 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
             employé.forEach(emp => {
 
             if (emp.deleted) return;
+            if (emp.statu === 'assigned') return;
             // si le rôle n'est pas dans la liste autorisée  on skip
             if (!rolesAutorises.includes(emp.role)) return;
             else{
@@ -270,6 +303,7 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
             employé.forEach(emp => {
 
             if (emp.deleted) return;
+            if (emp.statu === 'assigned') return;
             // si le rôle n'est pas dans la liste autorisée  on skip
             if (!rolesAutorises.includes(emp.role)) return;
             else{
@@ -284,6 +318,7 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
             employé.forEach(emp => {
 
             if (emp.deleted) return;
+            if (emp.statu === 'assigned') return;
             // si le rôle n'est pas dans la liste autorisée  on skip
             if (!rolesAutorises.includes(emp.role)) return;
             else{
@@ -298,6 +333,7 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
             employé.forEach(emp => {
 
             if (emp.deleted) return;
+            if (emp.statu === 'assigned') return;
             // si le rôle n'est pas dans la liste autorisée  on skip
             if (!rolesAutorises.includes(emp.role)) return;
             else{
@@ -309,7 +345,9 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
         console.log(allowedEmp);
         afficherListeModal(allowedEmp);
         openModalSelect();
+        activerselection(salleCliquee,allowedEmp);
         
     });
+    
 });
     
