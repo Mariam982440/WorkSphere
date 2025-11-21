@@ -1,13 +1,9 @@
 let employé =JSON.parse(localStorage.getItem('staffs')) || [];
 
-// window.onload= function(){
-//     afficherStaff();
 
-// document.querySelector('#form-ajout-edit').onsubmit = ajouterEmployé;
-// }
- afficherStaff();
+afficherStaff();
+verifierSalle()
 
-// document.querySelector('#form-ajout-edit').onsubmit = ajouterEmployé;
 let count=1;
 let bouton_exp= document.getElementById('btn-ajout-exp');
 
@@ -202,7 +198,6 @@ function afficherListeModal(allowedEmp){
 } 
 // fonction pour permetre la selection par click dans la liste des autorisés
 function activerselection(salleCliquee,allowedEmp){
-
     document.querySelectorAll('.btn-select-emp').forEach(element=>{
 
         element.addEventListener('click',function(){
@@ -211,10 +206,12 @@ function activerselection(salleCliquee,allowedEmp){
             let employéSelected=allowedEmp[indice];
 
 
+            console.log(employéSelected);
 
             ajouterEmployeSalle(employéSelected, salleCliquee);
             closeModalSelect();
             console.log(employéSelected);
+
         })
     })
 }
@@ -223,23 +220,61 @@ function activerselection(salleCliquee,allowedEmp){
 function ajouterEmployeSalle(employe, salle) {
 
     let bouton = document.querySelector(`[data-salle="${salle}"]`);
-    let containerSalle = bouton.closest('.bg-\\[\\#CFAB8D\\]').querySelector('.liste-employes');
+    console.log(bouton)
+    // remonter 2 niveaux
+    let divPrincipal = bouton.parentElement.parentElement;
+    let containerSalle = divPrincipal.querySelector('.liste-employes');
+
+console.log(employe)
 
     containerSalle.innerHTML += `
         <div class="flex items-center gap-1 p-[3px] bg-white rounded-xl ">
             <img src="./imgs/profil.jpg" class="w-5 h-5 rounded-xl">
             <span class="text-[9px]">${employe.name}</span>
-            <i class="text-[6px] fa-solid fa-x"></i>
+            <button type="button" class="btn-retirer" data-name="${employe.name}">
+                <i class="text-[6px] fa-solid fa-x"></i>
+            </button>
         </div>
     `;
     
+    // marquer comme assigné
     employe.statu = 'assigned';
     employe.poste = salle;
     localStorage.setItem('staffs',JSON.stringify(employé));
     afficherStaff();
+    
+    // activer le bouton x pour retirer l'employé
+    activerBoutonRetirer();
+    verifierSalle();
 }
 
 
+
+
+function activerBoutonRetirer(){
+    document.querySelectorAll('.btn-retirer').forEach(btn=>{
+        btn.addEventListener('click',function(){
+            let nomEmploye = this.getAttribute('data-name');
+            
+            let emp = employé.find(e => e.name === nomEmploye);
+            
+            if(emp){
+                // Marquer comme non assigné
+                emp.statu = 'unassigned';
+                emp.poste = '';
+                localStorage.setItem('staffs',JSON.stringify(employé));
+                
+                // Supprimer visuellement de la salle
+                this.parentElement.remove();
+                
+                // Rafraîchir la barre latérale
+                afficherStaff();
+                verifierSalle();
+
+            }
+        })
+    })
+}
 
 // fonction pour selectionner et filtrer les employé à assignés
 
@@ -350,4 +385,6 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
     });
     
 });
+
+
     
