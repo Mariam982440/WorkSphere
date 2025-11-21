@@ -248,7 +248,28 @@ console.log(employe)
     verifierSalle();
 }
 
+// fonction pour verifier les zonnes vides et les affiche en rouge 
+function verifierSalle(){
+    const sallesObligatoires = ['serveurs', 'securite', 'reception', 'archive'];   
 
+    sallesObligatoires.forEach(salle=>{
+        let bouton =document.querySelector(`[data-salle="${salle}"]`)
+        let divPrincipale =bouton.parentElement.parentElement;
+        let listeAssignée = divPrincipale.querySelector('.liste-employes')
+
+        if(listeAssignée && listeAssignée.children.length=== 0){
+            divPrincipale.classList.add('bg-red-100');
+            divPrincipale.classList.add('border-2');
+            divPrincipale.classList.add('border-red-300');
+        }
+        else {
+            divPrincipale.classList.remove('bg-red-100');
+            divPrincipale.classList.remove('border-2');
+            divPrincipale.classList.remore('border-red-300');
+        }
+        
+    })
+}
 
 
 function activerBoutonRetirer(){
