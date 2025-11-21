@@ -1,5 +1,13 @@
 let employé =JSON.parse(localStorage.getItem('staffs')) || [];
 
+const limitesParSalle = {
+    'serveurs': 1,
+    'conference': 10,
+    'securite': 3,
+    'reception': 2,
+    'personnel': 5,
+    'archive': 1
+};
 
 afficherStaff();
 verifierSalle()
@@ -97,15 +105,13 @@ function afficherStaff(){
         html +=`
         <div class="flex justify-around items-center rounded-2xl bg-white gap-3 md:px-1 md:py-2">
                     <div class="">
-                        <img class="rounded-2xl md:w-12 md:h-12" src="./imgs/profil.jpg" alt="staff photo">
+                        <img class="rounded-2xl md:w-12 md:h-12" src="${emp.photo}" alt="staff photo">
                     </div>
                     <div class="flex flex-col ">
                         <div class="md:text-[15px]">${emp.name}</div>
                         <div class="md:text-[15px] text-gray-500 font-bold">${emp.role}</div>
                     </div>
-                    <button>
-                        <i class="md:text-[18px] font-bold fa-solid fa-pen-to-square"></i>
-                    </button>
+                    
                     <button type="button" onclick="supprimerEmployé(${i})">
                         <i class="md:text-[18px] font-bold fa-solid fa-trash"></i>
                     </button>
@@ -127,7 +133,7 @@ function supprimerEmployé(indice){
 function ajouterEmployé(e){
     e.preventDefault();
 
-    const blocs=document.querySelectorAll('.block-exp');
+    const blocs= document.querySelectorAll('.block-exp');
 
     const experiences=[];
     blocs.forEach(bloc => {
@@ -147,10 +153,6 @@ function ajouterEmployé(e){
     const email = document.getElementById('email').value;
     const experience=experiences;
 
-    
-
-    
-
 
     if(!nom || !role  ||!email){
         alert('veuillez remplir les champs vide');
@@ -158,7 +160,7 @@ function ajouterEmployé(e){
     const staff={
         name: nom,
         role: role,
-        photo: photo,
+        photo: photo || './imgs/profil.jpg',
         tel: tel,
         email: email,
         experience: experience,
@@ -186,7 +188,7 @@ function afficherListeModal(allowedEmp){
         container.innerHTML+=`<button type="button" class="btn-select-emp" data-index="${index}">
                 <div class="flex justify-around items-center rounded-2xl bg-white md:px-1 md:py-1">
                 <div>
-                    <img class="rounded-2xl md:w-8 md:h-8" src="./imgs/profil.jpg" alt="staff photo">
+                    <img class="rounded-2xl md:w-8 md:h-8" src="${emp.photo}" alt="staff photo">
                 </div>
                 <div class="flex flex-col">
                     <div class="text-[12px]">${emp.name}</div>
@@ -208,9 +210,10 @@ function activerselection(salleCliquee,allowedEmp){
 
             console.log(employéSelected);
 
-            ajouterEmployeSalle(employéSelected, salleCliquee);
             closeModalSelect();
-            console.log(employéSelected);
+            ajouterEmployeSalle(employéSelected, salleCliquee);
+            
+            
 
         })
     })
@@ -225,11 +228,23 @@ function ajouterEmployeSalle(employe, salle) {
     let divPrincipal = bouton.parentElement.parentElement;
     let containerSalle = divPrincipal.querySelector('.liste-employes');
 
+
+    // Vérifier la limite
+    let nombreActuel = containerSalle.children.length;
+    let limite = limitesParSalle[salle];
+    
+    if(nombreActuel >= limite){
+        alert(`Cette salle a atteint sa limite de ${limite} employé(s) !`);
+        return;
+    }
+
+
+
 console.log(employe)
 
     containerSalle.innerHTML += `
         <div class="flex items-center gap-1 p-[3px] bg-white rounded-xl ">
-            <img src="./imgs/profil.jpg" class="w-5 h-5 rounded-xl">
+            <img src="${employe.photo}" class="w-5 h-5 rounded-xl">
             <span class="text-[9px]">${employe.name}</span>
             <button type="button" class="btn-retirer" data-name="${employe.name}">
                 <i class="text-[6px] fa-solid fa-x"></i>
@@ -407,5 +422,3 @@ document.querySelectorAll('.btn-assign').forEach(btn => {
     
 });
 
-
-    
