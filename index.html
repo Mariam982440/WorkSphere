@@ -18,7 +18,7 @@
         <p>gestion de personnel</p>
 
     </header> -->
-    <section class="flex flex-row">
+    <section class="flex flex-row justify-center">
         <aside id="for-bg" class="bg-[#ECEEDF]  w-[25%] h-[97Vh]">
             <div class="md:mb-10 md:mt-4 font-bold text-xl text-gray-500 text-center">utilisateur non assignés</div>
             <div id="cartes" class="flex flex-col  md:gap-3 md:mx-2">
@@ -30,10 +30,6 @@
                 class=" md:mx-8 md:my-6 md:px-3 md:py-2 flex justify-around items-center rounded-xl bg-gray-500 gap-1 w-[80%] ">
                 <div class="md:text-[14px] font-bold text-white">Ajouter un employé</div>
 
-                <i class=" md:text-[20px] text-white font-bold fa-solid fa-plus"></i>
-
-                <i class=" md:text-[20px] text-white font-bold fa-solid fa-plus"></i>
-                <i class=" md:text-[20px] text-white font-bold fa-solid fa-plus"></i>
                 <i class=" md:text-[20px] text-white font-bold fa-solid fa-plus"></i>
 
             </button>
@@ -57,7 +53,7 @@
                         <label for="nom">Nom</label>
                         <input id="nom"
                             class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[590px] md:w-[400px]"
-                            type="text" name="nom" placeholder="nom de l'employé">
+                            type="text" name="nom" placeholder="nom de l'employé" pattern="/^[a-zA-Z\s-]{2,30}$/">
                     </div>
                     <div class="flex flex-col items-start justify-evenly">
                         <label for="role">Role</label>
@@ -84,48 +80,21 @@
                         <label for="prénom">Téléphone</label>
                         <input id="tel"
                             class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[590px] md:w-[400px]"
-                            type="number" name="nom" placeholder="Téléphone">
+                            type="number" name="nom" placeholder="Téléphone" pattern="/^[0-9\s\-\+\(\)]{10,16}$/">
                     </div>
                     <div class="flex flex-col items-start justify-evenly">
                         <label for="émail">émail</label>
                         <input id="email"
                             class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[590px] md:w-[400px]"
-                            type="email" name="émail" placeholder="exemple@gmail.com">
+                            type="email" name="émail" placeholder="exemple@gmail.com"
+                            pattern="/^[^\s@]+@[^\s@]+\.[^\s@]+$/">
                     </div>
                     <div id="inserer-exp"
-                        class="flex flex-col border-2 border-blue-100 rounded-xl px-4 py-5 lg:w-[590px] md:w-[400px] bg-gray-200">
+                        class="flex flex-col md:gap-5 lg:gap-10 border-2 border-blue-100 rounded-xl px-4 py-5 lg:w-[590px] md:w-[400px] bg-gray-200">
                         <!-- les expérience seront inérées ici -->
-                        <h1 class="lg:mb-4">Expérience</h1>
-                        <div class="flex gap-6 ">
-                            <div class="flex flex-col items-start justify-evenly">
-                                <label class="text-xs" for="Poste">Poste</label>
-                                <input id="Poste"
-                                    class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
-                                    type="text" name="Poste" placeholder="Expérience de l'employé">
 
-                            </div>
-                            <div class="flex flex-col items-start justify-evenly">
-                                <label class="text-xs" for="entreprise">Entreprise</label>
-                                <input id="entreprise"
-                                    class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
-                                    type="text" name="entreprise" placeholder="Entreprise de cet expérience">
-                            </div>
-                        </div>
-                        <div class="flex gap-6">
-                            <div class="flex flex-col items-start justify-evenly">
-                                <label class="text-xs" for="date_debut">Date de debut</label>
-                                <input id="date_debut"
-                                    class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
-                                    type="text" name="date_debut" placeholder="Date de debut">
 
-                            </div>
-                            <div class="flex flex-col items-start justify-evenly">
-                                <label class="text-xs" for="date_fin">Date de la fin</label>
-                                <input id="date_fin"
-                                    class="text-center border-2 border-blue-100 rounded-xl  h-9 lg:w-[260px] md:w-[165px]"
-                                    type="text" name="date_fin" placeholder="Date de la fin">
-                            </div>
-                        </div>
+
                     </div>
                     <button id="btn-ajout-exp" type="button"
                         class=" md:mx-52 md:px-3 md:py-2 flex justify-around items-center rounded-xl bg-gray-500 gap-1 w-[30%] ">
@@ -158,7 +127,7 @@
                 </div>
                 <div id="container-select" class="flex flex-col mx-auto gap-3 w-[20vw]">
                     <!-- les cartes à selectionner -->
-                    
+
                     <div class="flex justify-around items-center  rounded-2xl bg-white  md:px-1 md:py-1">
                         <div class="">
                             <img class="rounded-2xl md:w-8 md:h-8" src="./imgs/profil.jpg" alt="staff photo">
@@ -171,26 +140,40 @@
                             <i class="text-red-400 md:text-[12px] font-bold fa-solid fa-x"></i>
                         </button>
                     </div>
-                    
+
                 </div>
             </div>
 
         </section>
 
-        <main class="w-[74%] ">
-            <div class="grid grid-cols-[35%_15%_25%_25%] grid-rows-[33%_33%_33%] h-[97vh] w-[73vw] lg:mx-2 md:my-2 ">
+
+        <!-- Modal info employé -->
+        <div id="modal-info-emp" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white rounded-2xl p-6 md:w-[500px]">
+                <div class="flex justify-between mb-4">
+                    <h2 class="text-xl font-bold">Informations</h2>
+                    <button onclick="closeModalInfo()" class="text-2xl">&times;</button>
+                </div>
+
+                <div id="contenu-info"></div>
+            </div>
+        </div>
+
+
+        <main class="w-[74%] flex items-center justify-center">
+            <div class="salle-cont grid grid-cols-[35%_15%_25%_25%] grid-rows-[33%_33%_33%] h-[97vh] w-[73vw] lg:mx-2 md:my-2 ">
 
 
                 <!-- Salle de conférence -->
-                <div class="bg-[#BBDCE5] ">
+                <div class="bg-[#BBDCE5] div-conf ">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="md:text-sm lg:text-l text-center font-bold mt-1">Salle de conférence</h3>
-                        <button class="btn-assign" type="button"  data-salle="conference"><i
+                        <button class="btn-assign" type="button" data-salle="conference"><i
                                 class=" fa-solid fa-plus"></i>
                         </button>
 
                     </div>
-                    <div class="liste-employes flex md:gap-3 md:ml-4">
+                    <div class="liste-employes flex  flex-wrap md:gap-3 md:ml-4">
 
                         <!-- carte d'affichage  -->
                     </div>
@@ -201,43 +184,44 @@
 
 
                 <!-- Salle des serveurs -->
-                <div class="bg-[#D9C4B0] ">
+                <div class="div_serv">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="md:text-sm lg:text-l text-center font-bold mt-1">Salle des serveurs</h3>
-                        <button class="btn-assign" type="button"  data-salle="serveurs"><i
+                        <button class="btn-assign" type="button" data-salle="serveurs"><i
                                 class=" fa-solid fa-plus"></i></button>
 
                     </div>
-                    <div class="liste-employes flex md:gap-3 md:ml-4">
+                    <div class="liste-employes flex flex-wrap md:gap-3 md:ml-4">
                         <!-- carte d'affichage insérer avec js -->
-                        
+
                     </div>
                 </div>
 
 
                 <!-- Salle de sécurité -->
-                <div class="bg-[#CFAB8D] ">
+                <div class="div_secur ">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="md:text-sm lg:text-l text-center font-bold mt-1">Salle de securité</h3>
                         <button class="btn-assign" type="button" data-salle="securite">
                             <i class=" fa-solid fa-plus"></i>
                         </button>
                     </div>
-                    <div class="liste-employes flex md:gap-3 md:ml-4">
+                    <div class="liste-employes flex flex-wrap md:gap-3 md:ml-4">
                         <!-- je veux inserer ici -->
                     </div>
                 </div>
 
-
                 <!-- Réception -->
-                <div class="bg-[#CFAB8D] row-span-2">
+                <div class=" row-span-2 div_recep">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="md:text-sm lg:text-l text-center font-bold mt-1">Salle de réception</h3>
                         <button class="btn-assign" type="button" data-salle="reception">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
-                    <div class="liste-employes flex md:gap-3 md:ml-4">
+                    
+                    <div class="liste-employes flex flex-wrap md:gap-3 md:ml-4">
+                        
                     </div>
                 </div>
 
@@ -246,27 +230,27 @@
 
 
                 <!-- salle du personnel  -->
-                <div class="bg-[#D1D8BE]">
+                <div class="bg-[#D1D8BE] div_pers">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="md:text-sm lg:text-l text-center font-bold mt-1">Salle du personnel</h3>
                         <button class="btn-assign" type="button" data-salle="personnel">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
-                    <div class="liste-employes flex md:gap-3 md:ml-4">
+                    <div class="liste-employes flex flex-wrap md:gap-3 md:ml-4">
                     </div>
                 </div>
 
 
                 <!-- Salle d’archives -->
-                <div class="bg-[#A4CCD9]">
+                <div class="bg-[#A4CCD9] div_arch">
                     <div class="flex items-center md:mb-4 justify-between md:px-3">
                         <h3 class="md:text-sm lg:text-l text-center font-bold mt-1">Salle d’archives</h3>
                         <button class="btn-assign" type="button" data-salle="archive">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
-                    <div class="liste-employes flex md:gap-3 md:ml-4">
+                    <div class="liste-employes flex flex-wrap md:gap-3 md:ml-4">
                     </div>
                 </div>
 
